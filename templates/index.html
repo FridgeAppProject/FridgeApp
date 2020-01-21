@@ -1,0 +1,338 @@
+
+<html lang="pl">
+<head>
+<style>
+    *{
+        padding: 5px;
+    }
+
+table, th, td {
+  border: 1px solid black;
+}
+
+
+
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  /*float: right;*/
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+.close1 {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close2 {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close3 {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.close1:hover,
+.close1:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.close2:hover,
+.close2:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.close3:hover,
+.close3:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
+  <meta charset="utf-8">
+
+  <title>FridgeApp</title>
+  
+</head>
+
+<body>
+<center>
+<div id="main" style="width: 1020px;">
+<div style="text-align: center;">
+<h1>FridgeApp</h1>
+<button id="dodaj_produkt" type="button" style="width:200px;">Dodaj produkt</button>
+<button id="dodaj_przepis" type="button" style="width:200px;">Dodaj przepis</button>
+<br />
+<br />
+</div>
+<div id="tabela1" style="width:490px; float:left; border: solid;">
+	zawartość lodówki 
+	<input type="text" name="Składnik">
+	<input type="submit" value="Wyszukaj"><br />
+	<select>
+		<option value="volvo">a-z</option>
+		<option value="saab">z-a</option>
+		<option value="opel">malejąco(ilość)</option>
+		<option value="audi">rosnąco(ilość)</option>
+	</select>
+	{% block content %}
+	<table>
+	  <tr>
+		<th>Nazwa produktu</th>
+		<th>ilość</th>
+		<th>edytuj</th>
+		<th>usuń</th>
+	  </tr>
+        {% for pro in produkty %}
+		  <tr>
+			<td>{{ pro.nazwa }}</td>
+			<td>1</td>
+			<td>Edytuj</td>
+			<td>Usuń</td>
+		  </tr>
+            {% endfor %}
+		 </table>
+
+		</tr>
+		<tr>
+		 
+		 </div>
+		 <div id="tabela2" style="width:490px; float:right;border: solid;">
+		Przepisy
+	<input type="text" name="Przepis">
+	<input type="submit" value="Wyszukaj2"><br />
+	<input type="submit" value="wszystko">
+	<input type="submit" value="dostępne">
+	
+
+	<table>
+	  <tr>
+		<th>Nazwa produktu</th>
+		<th>Wyświetl Przepis</th>
+		<th>usuń</th>
+	  </tr>
+        {% for prz in przepisy %}
+		  <tr>
+			<td>{{ prz.nazwa }}</td>
+			<td><button id="wyświetl_przepis" type="button" >Wyświetl przepis</button></td>
+			<td>Usuń</td>
+		  </tr>
+		  {% endfor %}
+
+		 
+	
+
+</table>
+             {% endblock %}
+</div>
+</div>
+<br />
+<br />
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+	<input type="text" name="Produkt">
+	<input type="text" name="Ilość">
+	<input type="submit" value="Zatwierdź">
+	<input type="submit" value="Anuluj">
+    <span class="close1">&times;</span>
+  </div>
+
+</div>
+<!-- The Modal2 -->
+<div id="myModal2" class="modal">
+
+  <!-- Modal2 content -->
+  <div class="modal-content">
+  	<input id="nazwa_przepisu" type="text" name="Nazwa Przepisu">
+	<input id="składnik" type="text" name="Składnik">
+	<input id="ilość" type="text" name="Ilość">
+	<input id="dodaj_przepis" onclick="newElement()" type="submit" value="Dodaj">
+	<ul id="myUL">
+	  <li>Cebula 12</li>
+	  <li> Mąka 4</li>
+	  <li>Masło 5</li>
+	
+	</ul>
+	<input id="Opis" type="text" name="Opis">
+	<input type="submit" value="Zatwierdź">
+	<input type="submit" value="Anuluj">
+	
+	
+
+    <span class="close2">&times;</span>
+  </div>
+
+</div>
+<!-- The Modal3 -->
+<div id="myModal3" class="modal">
+
+  <!-- Modal3 content -->
+  <div class="modal-content">
+	Przepis
+	<button id="edytuj" type="button" >Edytuj</button>
+	Skladniki
+	<ul id="myUL">
+	  <li>Cebula 12</li>
+	  <li> Mąka 4</li>
+	  <li>Masło 5</li>
+	</ul>
+	Opis Przygotowania
+	<textarea rows="4" cols="50">
+	SmalPP
+	</textarea>
+	<input type="submit" value="Zatwierdź">	
+	
+
+    <span class="close3">&times;</span>
+    <p>Some text in the Modal..</p>
+  </div>
+
+</div>
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+var modal2 = document.getElementById("myModal2");
+var modal3 = document.getElementById("myModal3");
+// Get the button that opens the modal
+var btn = document.getElementById("dodaj_produkt");
+var btn2 = document.getElementById("dodaj_przepis");
+var btn3 = document.getElementById("wyświetl_przepis");
+
+// Get the <span> element that closes the modal
+var span1 = document.getElementsByClassName("close1")[0];
+var span2 = document.getElementsByClassName("close2")[0];
+var span3 = document.getElementsByClassName("close3")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block"; 
+}
+btn2.onclick = function() {
+  modal2.style.display = "block";
+}
+btn3.onclick = function() {
+  modal3.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span1.onclick = function() {
+  modal.style.display = "none";
+}
+span2.onclick = function() {
+  modal2.style.display = "none";
+}
+span3.onclick = function() {
+  modal3.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+// Create a "close" button and append it to each list item
+var myNodelist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+
+// Click on a close button to hide the current list item
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
+}
+
+// Add a "checked" symbol when clicking on a list item
+var list = document.querySelector('ul');
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
+
+// Create a new list item when clicking on the "Add" button
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("składnik").value + " " + document.getElementById("ilość").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("składnik").value = "";
+  document.getElementById("ilość").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+}
+</script>
+	
+</body>
+</html>
