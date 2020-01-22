@@ -25,7 +25,7 @@ SECRET_KEY = 'q$fg3-3hw%s#g=b_3@+1xjn4ec%1s=__is+^cpfrt#vj@c7ys6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['fridge-application.herokuapp.com']
 
 
 # Application definition
