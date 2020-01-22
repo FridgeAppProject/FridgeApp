@@ -1,0 +1,6 @@
+django
+gunicorn
+django-heroku
+pip3-multiple-versions
+psycopg2
+psycopg2-binary
