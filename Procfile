@@ -1,1 +1,1 @@
-web: gunicorn FridgeApp.apps.FridgeappConfig:app
+web: gunicorn FridgeApp.apps.FridgeappConfig.wsgi
