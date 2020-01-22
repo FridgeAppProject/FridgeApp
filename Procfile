@@ -1,1 +1,1 @@
-web: gunicorn FridgeApp.wsgi
+web: gunicorn FridgeApp.wsgi --log-file -
