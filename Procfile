@@ -1,1 +1,1 @@
-web: gunicorn FridgeApp:app
+web: gunicorn FridgeApp.apps.FridgeappConfig:app
