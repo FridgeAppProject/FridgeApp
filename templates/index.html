@@ -135,34 +135,6 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 <body>
 
-Kolor tła:
-<div class="bgcolor livingCoral" data-value="#FF6F61"></div>
-<div class="bgcolor ultraViolet" data-value="#6B5B95"></div>
-<div class="bgcolor roseQuartz" data-value="#F7CAC9"></div>
-<div class="bgcolor serenity" data-value="#92A8D1"></div>
-<div class="bgcolor marsala" data-value="#955251"></div>
-<div class="bgcolor radiandOrchid" data-value="#B565A7"></div>
-<div class="bgcolor emerald" data-value="#009B77"></div>
-<div class="bgcolor sandDollar" data-value="#DFCFBE"></div>
-Kolor tabel:
-<div class="tablecolor livingCoral" data-value="#FF6F61"></div>
-<div class="tablecolor ultraViolet" data-value="#6B5B95"></div>
-<div class="tablecolor roseQuartz" data-value="#F7CAC9"></div>
-<div class="tablecolor serenity" data-value="#92A8D1"></div>
-<div class="tablecolor marsala" data-value="#955251"></div>
-<div class="tablecolor radiandOrchid" data-value="#B565A7"></div>
-<div class="tablecolor emerald" data-value="#009B77"></div>
-<div class="tablecolor sandDollar" data-value="#DFCFBE"></div>
-Kolor komórek:
-<div class="trcolor livingCoral" data-value="#FF6F61"></div>
-<div class="trcolor ultraViolet" data-value="#6B5B95"></div>
-<div class="trcolor roseQuartz" data-value="#F7CAC9"></div>
-<div class="trcolor serenity" data-value="#92A8D1"></div>
-<div class="trcolor marsala" data-value="#955251"></div>
-<div class="trcolor radiandOrchid" data-value="#B565A7"></div>
-<div class="trcolor emerald" data-value="#009B77"></div>
-<div class="trcolor sandDollar" data-value="#DFCFBE"></div>
-
 <center>
 <div id="main" style="width: 1020px;">
 <div style="text-align: center;">
@@ -172,17 +144,17 @@ Kolor komórek:
 <br />
 <br />
 </div>
-<div id="tabela1" style="width:490px; float:left; border: solid;">
-	zawartość lodówki 
+<div id="tabela1" style="width:490px; float:left; border:solid; height:70%; overflow:auto;">
+	Zawartość lodówki 
 	<input type="text" name="Składnik">
 	<input type="submit" value="Wyszukaj"><br />
 	{% block content %}
 	<table>
 	  <tr>
 		<th>Nazwa produktu</th>
-		<th>ilość</th>
-		<th>edytuj</th>
-		<th>usuń</th>
+		<th>Ilość</th>
+		<th>Edytuj</th>
+		<th>Usuń</th>
 	  </tr>
         {% for pro in produkty %}
 		  <tr>
@@ -198,7 +170,7 @@ Kolor komórek:
 		<tr>
 		 
 		 </div>
-		 <div id="tabela2" style="width:490px; float:right;border: solid;">
+		 <div id="tabela2" style="width:490px; float:right; border:solid; height:70%; overflow:auto;">
 		Przepisy
 	<input type="text" name="Przepis">
 	<input type="submit" value="Wyszukaj2"><br />
@@ -427,5 +399,34 @@ $(function() {
 	});
 });
 </script>
+
+Kolor tła:
+<div class="bgcolor livingCoral" data-value="#FF6F61"></div>
+<div class="bgcolor ultraViolet" data-value="#6B5B95"></div>
+<div class="bgcolor roseQuartz" data-value="#F7CAC9"></div>
+<div class="bgcolor serenity" data-value="#92A8D1"></div>
+<div class="bgcolor marsala" data-value="#955251"></div>
+<div class="bgcolor radiandOrchid" data-value="#B565A7"></div>
+<div class="bgcolor emerald" data-value="#009B77"></div>
+<div class="bgcolor sandDollar" data-value="#DFCFBE"></div>
+Kolor tabel:
+<div class="tablecolor livingCoral" data-value="#FF6F61"></div>
+<div class="tablecolor ultraViolet" data-value="#6B5B95"></div>
+<div class="tablecolor roseQuartz" data-value="#F7CAC9"></div>
+<div class="tablecolor serenity" data-value="#92A8D1"></div>
+<div class="tablecolor marsala" data-value="#955251"></div>
+<div class="tablecolor radiandOrchid" data-value="#B565A7"></div>
+<div class="tablecolor emerald" data-value="#009B77"></div>
+<div class="tablecolor sandDollar" data-value="#DFCFBE"></div>
+Kolor komórek:
+<div class="trcolor livingCoral" data-value="#FF6F61"></div>
+<div class="trcolor ultraViolet" data-value="#6B5B95"></div>
+<div class="trcolor roseQuartz" data-value="#F7CAC9"></div>
+<div class="trcolor serenity" data-value="#92A8D1"></div>
+<div class="trcolor marsala" data-value="#955251"></div>
+<div class="trcolor radiandOrchid" data-value="#B565A7"></div>
+<div class="trcolor emerald" data-value="#009B77"></div>
+<div class="trcolor sandDollar" data-value="#DFCFBE"></div>
+
 </body>
 </html>
