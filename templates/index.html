@@ -130,7 +130,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
   <meta charset="utf-8">
 
   <title>FridgeApp</title>
-  
+
 </head>
 
 <body>
@@ -145,9 +145,11 @@ body {font-family: Arial, Helvetica, sans-serif;}
 <br />
 </div>
 <div id="tabela1" style="width:490px; float:left; border:solid; height:70%; overflow:auto;">
-	Zawartość lodówki 
+	Zawartość lodówki
+<form action="" method="post">
 	<input type="text" name="Składnik">
 	<input type="submit" value="Wyszukaj"><br />
+</form>
 	{% block content %}
 	<table>
 	  <tr>
@@ -156,27 +158,31 @@ body {font-family: Arial, Helvetica, sans-serif;}
 		<th>Edytuj</th>
 		<th>Usuń</th>
 	  </tr>
-        {% for pro in produkty %}
+        {% for pro in produkty_filtr %}
+        {% for p in produkty_uzytkownika %}
+            {% if pro.id == p.id_produktu %}
 		  <tr>
 			<td>{{ pro.nazwa }}</td>
-			<td>1</td>
+			<td>{{ p.ilosc }} {{ pro.jednostka }}</td>
 			<td>Edytuj</td>
 			<td>Usuń</td>
 		  </tr>
+            {% endif %}
+            {% endfor %}
             {% endfor %}
 		 </table>
 
 		</tr>
 		<tr>
-		 
+
 		 </div>
 		 <div id="tabela2" style="width:490px; float:right; border:solid; height:70%; overflow:auto;">
 		Przepisy
 	<input type="text" name="Przepis">
-	<input type="submit" value="Wyszukaj2"><br />
+	<input type="submit" value="Wyszukaj"><br />
 	<input type="submit" value="wszystko">
 	<input type="submit" value="dostępne">
-	
+
 
 	<table>
 	  <tr>
@@ -192,8 +198,8 @@ body {font-family: Arial, Helvetica, sans-serif;}
 		  </tr>
 		  {% endfor %}
 
-		 
-	
+
+
 
 </table>
              {% endblock %}
@@ -207,11 +213,18 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
   <!-- Modal content -->
   <div class="modal-content">
-	<input type="text" name="Produkt">
-	<input type="text" name="Ilość">
+      <form method="post" action="">
+          Produkt:
+          <select name="addProdukt" >
+	            {% for pro in produkty %}
+              <option value='{{ pro.id }}'>{{ pro.nazwa }}</option>
+                {% endfor %}
+          </select>
+
+	Ilość: <input type="number" name="addIlosc">
 	<input type="submit" value="Zatwierdź">
-	<input type="submit" value="Anuluj">
     <span class="close1">&times;</span>
+      </form>
   </div>
 
 </div>
@@ -228,13 +241,13 @@ body {font-family: Arial, Helvetica, sans-serif;}
 	  <li>Cebula 12</li>
 	  <li> Mąka 4</li>
 	  <li>Masło 5</li>
-	
+
 	</ul>
 	<input id="Opis" type="text" name="Opis">
 	<input type="submit" value="Zatwierdź">
 	<input type="submit" value="Anuluj">
-	
-	
+
+
 
     <span class="close2">&times;</span>
   </div>
@@ -257,8 +270,8 @@ body {font-family: Arial, Helvetica, sans-serif;}
 	<textarea rows="4" cols="50">
 	SmalPP
 	</textarea>
-	<input type="submit" value="Zatwierdź">	
-	
+	<input type="submit" value="Zatwierdź">
+
 
     <span class="close3">&times;</span>
     <p>Some text in the Modal..</p>
@@ -280,9 +293,9 @@ var span1 = document.getElementsByClassName("close1")[0];
 var span2 = document.getElementsByClassName("close2")[0];
 var span3 = document.getElementsByClassName("close3")[0];
 
-// When the user clicks the button, open the modal 
+// When the user clicks the button, open the modal
 btn.onclick = function() {
-  modal.style.display = "block"; 
+  modal.style.display = "block";
 }
 btn2.onclick = function() {
   modal2.style.display = "block";
