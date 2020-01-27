@@ -32,7 +32,8 @@ class Produkty_uzytkownika(models.Model):
     id_uzytkownika = models.CharField(max_length=256)
     id_produktu = models.CharField(max_length=256)
     ilosc = models.CharField(max_length=256)
-
+    def addProdukt(self, i):
+        self.ilosc = str(float(self.ilosc) + float(i));
     def __str__(self):
         return self.id
 
