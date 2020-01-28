@@ -274,31 +274,66 @@
       </div>
 
     </div>
-    <!-- The Modal2 -->
-    <div id="myModal2" class="modal">
+    
+<!-- The Modal2 -->
+<div id="myModal2" class="modal">
 
-      <!-- Modal2 content -->
-      <div class="modal-content">
-        <input id="nazwa_przepisu" type="text" name="Nazwa Przepisu">
-        <input id="składnik" type="text" name="Składnik">
-        <input id="ilość" type="text" name="Ilość">
-        <input id="dodaj_przepis" onclick="newElement()" type="submit" value="Dodaj">
-        <ul id="myUL">
-          <li>Cebula 12</li>
-          <li> Mąka 4</li>
-          <li>Masło 5</li>
+  <!-- Modal2 content -->
+  <div class="modal-content">
+  <span style = "" class="close2">&times;</span>
+      <form style = "text-align: center;" action="" method="post">
 
-        </ul>
-        <input id="Opis" type="text" name="Opis">
-        <input type="submit" value="Zatwierdź">
-        <input type="submit" value="Anuluj">
+          Nazwa przepisu:<br>
+          <input id="nazwa_przepisu" type="text" name="nazwa_przepisu">
+          <br><br>
+          Kategoria:<br>
+          <input id="kategoria" type="text" name="kategoria">
+          <br><br>
+          Opis:<br>
+          <textarea row="4" id="Opis" name="opis"></textarea>
+          <br><br>
 
-
-
-        <span class="close2">&times;</span>
-      </div>
+	Składnik: <select id = "id_produktu" >
+	            {% for pro in produkty %}
+              <option value='{{ pro.id }}'>{{ pro.nazwa }}</option>
+                {% endfor %}
+          </select>
+	Ilość: <input id="ilość" type="number" name="Ilość">
+          <button type="button" id="dodaj_produkt" onclick="dodajProdukt()" >Dodaj</button>
+      <input type="text" id = "produkty_przepisu" name="produkty_przepisu" style="display: none">
+	<div id="wybrane_produkty">
 
     </div>
+	<input type="submit" value="Zatwierdź">
+
+          </form>
+
+      <script>
+          function dodajProdukt(){
+              var prod_id = document.getElementById('id_produktu');
+              var prod_name= prod_id.options[prod_id.selectedIndex].text;
+              prod_id = prod_id.options[prod_id.selectedIndex].value;
+              var ilosc = document.getElementById('ilość').value;
+
+              var p=prod_id+"_"+ilosc+";";
+              document.getElementById('wybrane_produkty').innerHTML+="<div id='"+p+"'onclick='usunProdukt(\""+p+"\")' style='cursor:pointer;font: inherit; border: 1px solid black; border-radius: 3px; margin: 3px 0 10px 0; padding: 3px 0' >"+prod_name+" "+ilosc+"</div>";
+              document.getElementById("produkty_przepisu").value+=p;
+
+          }
+        function usunProdukt(p){
+              document.getElementById(p).remove();
+              var str = document.getElementById('produkty_przepisu').value;
+              var n = str.indexOf(p);
+              var m = n+p.length;
+              var wynik = str.substr(0, n-1) + str.substr(m, str.length);
+              document.getElementById('produkty_przepisu').value = wynik;
+
+        }
+      </script>
+
+  </div>
+
+</div>
     <!-- The Modal3 -->
     <div id="myModal3" class="modal">
 
