@@ -44,9 +44,26 @@ def view_main(request):
                                               ilosc=request.POST.get('addIlosc'))
             addProdukt.save()
             return redirect('/')
+                                      # END DODAWANIE PRODUKTU END#
 
+    nazwa_przepisu = request.POST.get('nazwa_przepisu')
+    kategoria = request.POST.get('kategoria')
+    opis = request.POST.get('opis')
+    produkty_przepisu = request.POST.get('produkty_przepisu')
+    if nazwa_przepisu is not None and opis is not None and produkty_przepisu is not None:
+        produkty_przepisu = produkty_przepisu.split(';')
+        przepis = Przepis(nazwa=nazwa_przepisu,kategoria=kategoria, opis=opis)
+        przepis.save()
+        id_prze = Przepis.objects.get(nazwa=nazwa_przepisu).id
+        for x in produkty_przepisu:
+            dane = x.split('_')
+            pro_prze = Produkty_przepisu(id_produktu=dane[0], id_przepisu=id_prze, ilosc=dane[1])
+            pro_prze.save()
+        return redirect('/')
+    
+    
     return render(request, 'index.html', {"produkty_filtr": produkty_filtr, "id_prod": id_prod, "przepisy": przepisy, "produkty_uzytkownika": produkty_uzytkownika, "produkty": produkty})
-                                        #END DODAWANIE PRODUKTU END#
+                                        
 
 
 def view_login(request):
