@@ -1,445 +1,493 @@
-<script src ="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <html lang="pl">
+
 <head>
-<style>
-    *{
-        padding: 5px;
+  <style>
+    * {
+      padding: 5px;
     }
 
-/*kolory*/
-table, th, td {
-  border: 1px solid black;
-}
-.bgcolor, .trcolor, .tablecolor {
-	width: 16px;
-	height: 16px;
-	border: 1px solid #555;
-	display: inline-block;
-	margin: 0 0 0 0.2em;
-	cursor: pointer;
-  padding: 2px;
-}
-.bgcolor img, .trcolor img, .tablecolor img {
-  max-width: 100%;
-  max-height: 100%;
-  display: block;
-}
-.livingCoral {
-	background-color: #FF6F61;
-}
-.ultraViolet {
-	background-color: #6B5B95;
-}
-.roseQuartz {
-  background-color: #F7CAC9;
-}
-.serenity {
-  background-color: #92A8D1;
-}
-.marsala {
-  background-color: #955251;
-}
-.radiandOrchid {
-  background-color: #B565A7;
-}
-.emerald {
-  background-color: #009B77;
-}
-.sandDollar {
-  background-color: #DFCFBE;
-}
+    /*kolory*/
+    table,
+    th,
+    td {
+      border: 1px solid black;
+    }
 
-body {font-family: Arial, Helvetica, sans-serif;}
+    .bgcolor,
+    .trcolor,
+    .tablecolor {
+      width: 16px;
+      height: 16px;
+      border: 1px solid #555;
+      display: inline-block;
+      margin: 0 0 0 0.2em;
+      cursor: pointer;
+      padding: 2px;
+    }
 
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
+    .bgcolor img,
+    .trcolor img,
+    .tablecolor img {
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+    }
 
-/* Modal Content */
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
+    .livingCoral {
+      background-color: #FF6F61;
+    }
 
-/* The Close Button */
-.close {
-  color: #aaaaaa;
-  /*float: right;*/
-  font-size: 20px;
-  font-weight: bold;
-  margin-left: 5px;
-}
-.close1 {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-.close2 {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-.close3 {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
+    .ultraViolet {
+      background-color: #6B5B95;
+    }
 
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-.close1:hover,
-.close1:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-.close2:hover,
-.close2:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-.close3:hover,
-.close3:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-</style>
+    .roseQuartz {
+      background-color: #F7CAC9;
+    }
+
+    .serenity {
+      background-color: #92A8D1;
+    }
+
+    .marsala {
+      background-color: #955251;
+    }
+
+    .radiandOrchid {
+      background-color: #B565A7;
+    }
+
+    .emerald {
+      background-color: #009B77;
+    }
+
+    .sandDollar {
+      background-color: #DFCFBE;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* The Modal (background) */
+    .modal {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
+      z-index: 1;
+      /* Sit on top */
+      padding-top: 100px;
+      /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0);
+      /* Fallback color */
+      background-color: rgba(0, 0, 0, 0.4);
+      /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+
+    /* The Close Button */
+    .close {
+      color: #aaaaaa;
+      /*float: right;*/
+      font-size: 20px;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+
+    .close1 {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close2 {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close3 {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .close1:hover,
+    .close1:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .close2:hover,
+    .close2:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .close3:hover,
+    .close3:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    button
+    {
+      border: #555 2px solid;      
+    }
+  </style>
+
   <meta charset="utf-8">
-
   <title>FridgeApp</title>
 
 </head>
 
 <body>
+  <center>
 
-<center>
-<div id="main" style="width: 1020px;">
-<div style="text-align: center;">
-<h1>FridgeApp</h1>
-<button id="dodaj_produkt" type="button" style="width:200px;">Dodaj produkt</button>
-<button id="dodaj_przepis" type="button" style="width:200px;">Dodaj przepis</button>
-<br />
-<br />
-</div>
-<div id="tabela1" style="width:490px; float:left; border:solid; height:70%; overflow:auto;">
-	Zawartość lodówki
-<form action="" method="post">
-	<input type="text" name="Składnik">
-	<input type="submit" value="Wyszukaj"><br />
-</form>
-	{% block content %}
-	<table>
-	  <tr>
-		<th>Nazwa produktu</th>
-		<th>Ilość</th>
-		<th>Edytuj</th>
-		<th>Usuń</th>
-	  </tr>
-        {% for pro in produkty_filtr %}
-        {% for p in produkty_uzytkownika %}
-            {% if pro.id == p.id_produktu %}
-		  <tr>
-			<td>{{ pro.nazwa }}</td>
-			<td>{{ p.ilosc }} {{ pro.jednostka }}</td>
-			<td>Edytuj</td>
-			<td>Usuń</td>
-		  </tr>
-            {% endif %}
-            {% endfor %}
-            {% endfor %}
-		 </table>
+    <div id="top_menu" style="height: 40px; background-color: #009B77; width: 100%; text-align: right;">
+      <div style="display: inline-block;">Nazwa użytkownika</div>
+      <button style="display: inline-block;">Wyloguj</button>
+    </div>
 
-		</tr>
-		<tr>
+    <div id="main" style="width: 1020px;">
 
-		 </div>
-		 <div id="tabela2" style="width:490px; float:right; border:solid; height:70%; overflow:auto;">
-		Przepisy
-	<input type="text" name="Przepis">
-	<input type="submit" value="Wyszukaj"><br />
-	<input type="submit" value="wszystko">
-	<input type="submit" value="dostępne">
+      <div style="text-align: center;">
+        <h1>FridgeApp</h1>
+        <button id="dodaj_produkt" type="button" style="width:200px;">Dodaj produkt</button>
+        <button id="dodaj_przepis" type="button" style="width:200px;">Dodaj przepis</button>
+        <br />
+        <br />
+      </div>
 
+      <div id="tabela1" style="width:490px; float:left; border:solid; height:70%; overflow:auto;">
+        Zawartość lodówki
+        <form action="" method="post">
+          <input type="text" name="Składnik">
+          <input type="submit" value="Wyszukaj"><br />
+        </form>
+        {% block content %}
+        <table>
+          <tr>
+            <th>Nazwa produktu</th>
+            <th>Ilość</th>
+            <th>Edytuj</th>
+            <th>Usuń</th>
+          </tr>
+          {% for pro in produkty_filtr %}
+          {% for p in produkty_uzytkownika %}
+          {% if pro.id == p.id_produktu %}
+          <tr>
+            <td>{{ pro.nazwa }}</td>
+            <td>{{ p.ilosc }} {{ pro.jednostka }}</td>
+            <td>Edytuj</td>
+            <td>Usuń</td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+          {% endfor %}
+        </table>
 
-	<table>
-	  <tr>
-		<th>Nazwa produktu</th>
-		<th>Wyświetl Przepis</th>
-		<th>usuń</th>
-	  </tr>
-        {% for prz in przepisy %}
-		  <tr>
-			<td>{{ prz.nazwa }}</td>
-			<td><button id="wyświetl_przepis" type="button" >Wyświetl przepis</button></td>
-			<td>Usuń</td>
-		  </tr>
-		  {% endfor %}
+        </tr>
+        <tr>
+
+      </div>
+      <div id="tabela2" style="width:490px; float:right; border:solid; height:70%; overflow:auto;">
+        Przepisy
+        <input type="text" name="Przepis">
+        <input type="submit" value="Wyszukaj"><br />
+        <input type="submit" value="wszystko">
+        <input type="submit" value="dostępne">
 
 
+        <table>
+          <tr>
+            <th>Nazwa produktu</th>
+            <th>Wyświetl Przepis</th>
+            <th>usuń</th>
+          </tr>
+          {% for prz in przepisy %}
+          <tr>
+            <td>{{ prz.nazwa }}</td>
+            <td><button id="wyświetl_przepis" type="button">Wyświetl przepis</button></td>
+            <td>Usuń</td>
+          </tr>
+          {% endfor %}
 
 
-</table>
-             {% endblock %}
-</div>
-</div>
-<br />
-<br />
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
 
-  <!-- Modal content -->
-  <div class="modal-content">
-      <form method="post" action="">
+        </table>
+        {% endblock %}
+      </div>
+    </div>
+    <br />
+    <br />
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <form method="post" action="">
           Produkt:
-          <select name="addProdukt" >
-	            {% for pro in produkty %}
-              <option value='{{ pro.id }}'>{{ pro.nazwa }}</option>
-                {% endfor %}
+          <select name="addProdukt">
+            {% for pro in produkty %}
+            <option value='{{ pro.id }}'>{{ pro.nazwa }}</option>
+            {% endfor %}
           </select>
 
-	Ilość: <input type="number" name="addIlosc">
-	<input type="submit" value="Zatwierdź">
-    <span class="close1">&times;</span>
-      </form>
-  </div>
+          Ilość: <input type="number" name="addIlosc">
+          <input type="submit" value="Zatwierdź">
+          <span class="close1">&times;</span>
+        </form>
+      </div>
 
-</div>
-<!-- The Modal2 -->
-<div id="myModal2" class="modal">
+    </div>
+    <!-- The Modal2 -->
+    <div id="myModal2" class="modal">
 
-  <!-- Modal2 content -->
-  <div class="modal-content">
-  	<input id="nazwa_przepisu" type="text" name="Nazwa Przepisu">
-	<input id="składnik" type="text" name="Składnik">
-	<input id="ilość" type="text" name="Ilość">
-	<input id="dodaj_przepis" onclick="newElement()" type="submit" value="Dodaj">
-	<ul id="myUL">
-	  <li>Cebula 12</li>
-	  <li> Mąka 4</li>
-	  <li>Masło 5</li>
+      <!-- Modal2 content -->
+      <div class="modal-content">
+        <input id="nazwa_przepisu" type="text" name="Nazwa Przepisu">
+        <input id="składnik" type="text" name="Składnik">
+        <input id="ilość" type="text" name="Ilość">
+        <input id="dodaj_przepis" onclick="newElement()" type="submit" value="Dodaj">
+        <ul id="myUL">
+          <li>Cebula 12</li>
+          <li> Mąka 4</li>
+          <li>Masło 5</li>
 
-	</ul>
-	<input id="Opis" type="text" name="Opis">
-	<input type="submit" value="Zatwierdź">
-	<input type="submit" value="Anuluj">
-
-
-
-    <span class="close2">&times;</span>
-  </div>
-
-</div>
-<!-- The Modal3 -->
-<div id="myModal3" class="modal">
-
-  <!-- Modal3 content -->
-  <div class="modal-content">
-	Przepis
-	<button id="edytuj" type="button" >Edytuj</button>
-	Skladniki
-	<ul id="myUL">
-	  <li>Cebula 12</li>
-	  <li> Mąka 4</li>
-	  <li>Masło 5</li>
-	</ul>
-	Opis Przygotowania
-	<textarea rows="4" cols="50">
-	SmalPP
-	</textarea>
-	<input type="submit" value="Zatwierdź">
+        </ul>
+        <input id="Opis" type="text" name="Opis">
+        <input type="submit" value="Zatwierdź">
+        <input type="submit" value="Anuluj">
 
 
-    <span class="close3">&times;</span>
-    <p>Some text in the Modal..</p>
-  </div>
 
-</div>
-<script>
-// Get the modal
-var modal = document.getElementById("myModal");
-var modal2 = document.getElementById("myModal2");
-var modal3 = document.getElementById("myModal3");
-// Get the button that opens the modal
-var btn = document.getElementById("dodaj_produkt");
-var btn2 = document.getElementById("dodaj_przepis");
-var btn3 = document.getElementById("wyświetl_przepis");
+        <span class="close2">&times;</span>
+      </div>
 
-// Get the <span> element that closes the modal
-var span1 = document.getElementsByClassName("close1")[0];
-var span2 = document.getElementsByClassName("close2")[0];
-var span3 = document.getElementsByClassName("close3")[0];
+    </div>
+    <!-- The Modal3 -->
+    <div id="myModal3" class="modal">
 
-// When the user clicks the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-btn2.onclick = function() {
-  modal2.style.display = "block";
-}
-btn3.onclick = function() {
-  modal3.style.display = "block";
-}
+      <!-- Modal3 content -->
+      <div class="modal-content">
+        Przepis
+        <button id="edytuj" type="button">Edytuj</button>
+        Skladniki
+        <ul id="myUL">
+          <li>Cebula 12</li>
+          <li> Mąka 4</li>
+          <li>Masło 5</li>
+        </ul>
+        Opis Przygotowania
+        <textarea rows="4" cols="50">
+        SmalPP
+        </textarea>
+        <input type="submit" value="Zatwierdź">
 
-// When the user clicks on <span> (x), close the modal
-span1.onclick = function() {
-  modal.style.display = "none";
-}
-span2.onclick = function() {
-  modal2.style.display = "none";
-}
-span3.onclick = function() {
-  modal3.style.display = "none";
-}
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-// Create a "close" button and append it to each list item
-var myNodelist = document.getElementsByTagName("LI");
-var i;
-for (i = 0; i < myNodelist.length; i++) {
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  myNodelist[i].appendChild(span);
-}
+        <span class="close3">&times;</span>
+        <p>Some text in the Modal..</p>
+      </div>
 
-// Click on a close button to hide the current list item
-var close = document.getElementsByClassName("close");
-var i;
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
-  }
-}
+    </div>
+    <script>
+      // Get the modal
+      var modal = document.getElementById("myModal");
+      var modal2 = document.getElementById("myModal2");
+      var modal3 = document.getElementById("myModal3");
+      // Get the button that opens the modal
+      var btn = document.getElementById("dodaj_produkt");
+      var btn2 = document.getElementById("dodaj_przepis");
+      var btn3 = document.getElementById("wyświetl_przepis");
 
-// Add a "checked" symbol when clicking on a list item
-var list = document.querySelector('ul');
-list.addEventListener('click', function(ev) {
-  if (ev.target.tagName === 'LI') {
-    ev.target.classList.toggle('checked');
-  }
-}, false);
+      // Get the <span> element that closes the modal
+      var span1 = document.getElementsByClassName("close1")[0];
+      var span2 = document.getElementsByClassName("close2")[0];
+      var span3 = document.getElementsByClassName("close3")[0];
 
-// Create a new list item when clicking on the "Add" button
-function newElement() {
-  var li = document.createElement("li");
-  var inputValue = document.getElementById("składnik").value + " " + document.getElementById("ilość").value;
-  var t = document.createTextNode(inputValue);
-  li.appendChild(t);
-  if (inputValue === '') {
-    alert("You must write something!");
-  } else {
-    document.getElementById("myUL").appendChild(li);
-  }
-  document.getElementById("składnik").value = "";
-  document.getElementById("ilość").value = "";
+      // When the user clicks the button, open the modal
+      btn.onclick = function () {
+        modal.style.display = "block";
+      }
+      btn2.onclick = function () {
+        modal2.style.display = "block";
+      }
+      btn3.onclick = function () {
+        modal3.style.display = "block";
+      }
 
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  li.appendChild(span);
+      // When the user clicks on <span> (x), close the modal
+      span1.onclick = function () {
+        modal.style.display = "none";
+      }
+      span2.onclick = function () {
+        modal2.style.display = "none";
+      }
+      span3.onclick = function () {
+        modal3.style.display = "none";
+      }
 
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
-      var div = this.parentElement;
-      div.style.display = "none";
-    }
-  }
-}
-</script>
-<script>
-  // kolorki
-function LightenColor(color, percent) {
-    var num = parseInt(color.replace("#",""), 16),
-		amt = Math.round(2.55 * percent),
-		R = (num >> 16) + amt,
-		B = (num >> 8 & 0x00FF) + amt,
-		G = (num & 0x0000FF) + amt;
-		return (0x1000000 + (R<255?R<1?0:R:255)*0x10000 + (B<255?B<1?0:B:255)*0x100 + (G<255?G<1?0:G:255)).toString(16).slice(1);
-}
-$(function() {
-	//bg color selector
-  $(".bgcolor").click(function(){
-		var color = $(this).attr("data-value");
-    $("body").css("background-color", color);
-	});
-});
-$(function() {
-	//table color selector
-  $(".tablecolor").click(function(){
-		var color = $(this).attr("data-value");
-    document.getElementById("tabela1").style.backgroundColor = color;
-    document.getElementById("tabela2").style.backgroundColor = color;
-	});
-});
-$(function() {
-	//tr color selector
-  $(".trcolor").click(function(){
-		var color = $(this).attr("data-value");
-    $("tr:even").css("background-color", color);
-    $("tr:odd").css("background-color", LightenColor(color, 15));
-	});
-});
-</script>
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+      // Create a "close" button and append it to each list item
+      var myNodelist = document.getElementsByTagName("LI");
+      var i;
+      for (i = 0; i < myNodelist.length; i++) {
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        myNodelist[i].appendChild(span);
+      }
 
-Kolor tła:
-<div class="bgcolor livingCoral" data-value="#FF6F61"></div>
-<div class="bgcolor ultraViolet" data-value="#6B5B95"></div>
-<div class="bgcolor roseQuartz" data-value="#F7CAC9"></div>
-<div class="bgcolor serenity" data-value="#92A8D1"></div>
-<div class="bgcolor marsala" data-value="#955251"></div>
-<div class="bgcolor radiandOrchid" data-value="#B565A7"></div>
-<div class="bgcolor emerald" data-value="#009B77"></div>
-<div class="bgcolor sandDollar" data-value="#DFCFBE"></div>
-Kolor tabel:
-<div class="tablecolor livingCoral" data-value="#FF6F61"></div>
-<div class="tablecolor ultraViolet" data-value="#6B5B95"></div>
-<div class="tablecolor roseQuartz" data-value="#F7CAC9"></div>
-<div class="tablecolor serenity" data-value="#92A8D1"></div>
-<div class="tablecolor marsala" data-value="#955251"></div>
-<div class="tablecolor radiandOrchid" data-value="#B565A7"></div>
-<div class="tablecolor emerald" data-value="#009B77"></div>
-<div class="tablecolor sandDollar" data-value="#DFCFBE"></div>
-Kolor komórek:
-<div class="trcolor livingCoral" data-value="#FF6F61"></div>
-<div class="trcolor ultraViolet" data-value="#6B5B95"></div>
-<div class="trcolor roseQuartz" data-value="#F7CAC9"></div>
-<div class="trcolor serenity" data-value="#92A8D1"></div>
-<div class="trcolor marsala" data-value="#955251"></div>
-<div class="trcolor radiandOrchid" data-value="#B565A7"></div>
-<div class="trcolor emerald" data-value="#009B77"></div>
-<div class="trcolor sandDollar" data-value="#DFCFBE"></div>
+      // Click on a close button to hide the current list item
+      var close = document.getElementsByClassName("close");
+      var i;
+      for (i = 0; i < close.length; i++) {
+        close[i].onclick = function () {
+          var div = this.parentElement;
+          div.style.display = "none";
+        }
+      }
 
+      // Add a "checked" symbol when clicking on a list item
+      var list = document.querySelector('ul');
+      list.addEventListener('click', function (ev) {
+        if (ev.target.tagName === 'LI') {
+          ev.target.classList.toggle('checked');
+        }
+      }, false);
+
+      // Create a new list item when clicking on the "Add" button
+      function newElement() {
+        var li = document.createElement("li");
+        var inputValue = document.getElementById("składnik").value + " " + document.getElementById("ilość").value;
+        var t = document.createTextNode(inputValue);
+        li.appendChild(t);
+        if (inputValue === '') {
+          alert("You must write something!");
+        } else {
+          document.getElementById("myUL").appendChild(li);
+        }
+        document.getElementById("składnik").value = "";
+        document.getElementById("ilość").value = "";
+
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        li.appendChild(span);
+
+        for (i = 0; i < close.length; i++) {
+          close[i].onclick = function () {
+            var div = this.parentElement;
+            div.style.display = "none";
+          }
+        }
+      }
+    </script>
+    <script>
+      // kolorki
+      function LightenColor(color, percent) {
+        var num = parseInt(color.replace("#", ""), 16),
+          amt = Math.round(2.55 * percent),
+          R = (num >> 16) + amt,
+          B = (num >> 8 & 0x00FF) + amt,
+          G = (num & 0x0000FF) + amt;
+        return (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 + (B < 255 ? B < 1 ? 0 : B : 255) * 0x100 + (G < 255 ? G < 1 ? 0 : G : 255)).toString(16).slice(1);
+      }
+      $(function () {
+        //bg color selector
+        $(".bgcolor").click(function () {
+          var color = $(this).attr("data-value");
+          $("body").css("background-color", color);
+        });
+      });
+      $(function () {
+        //table color selector
+        $(".tablecolor").click(function () {
+          var color = $(this).attr("data-value");
+          document.getElementById("tabela1").style.backgroundColor = color;
+          document.getElementById("tabela2").style.backgroundColor = color;
+        });
+      });
+      $(function () {
+        //tr color selector
+        $(".trcolor").click(function () {
+          var color = $(this).attr("data-value");
+          $("tr:even").css("background-color", color);
+          $("tr:odd").css("background-color", LightenColor(color, 15));
+        });
+      });
+    </script>
+
+    Kolor tła:
+    <div class="bgcolor livingCoral" data-value="#FF6F61"></div>
+    <div class="bgcolor ultraViolet" data-value="#6B5B95"></div>
+    <div class="bgcolor roseQuartz" data-value="#F7CAC9"></div>
+    <div class="bgcolor serenity" data-value="#92A8D1"></div>
+    <div class="bgcolor marsala" data-value="#955251"></div>
+    <div class="bgcolor radiandOrchid" data-value="#B565A7"></div>
+    <div class="bgcolor emerald" data-value="#009B77"></div>
+    <div class="bgcolor sandDollar" data-value="#DFCFBE"></div>
+    Kolor tabel:
+    <div class="tablecolor livingCoral" data-value="#FF6F61"></div>
+    <div class="tablecolor ultraViolet" data-value="#6B5B95"></div>
+    <div class="tablecolor roseQuartz" data-value="#F7CAC9"></div>
+    <div class="tablecolor serenity" data-value="#92A8D1"></div>
+    <div class="tablecolor marsala" data-value="#955251"></div>
+    <div class="tablecolor radiandOrchid" data-value="#B565A7"></div>
+    <div class="tablecolor emerald" data-value="#009B77"></div>
+    <div class="tablecolor sandDollar" data-value="#DFCFBE"></div>
+    Kolor komórek:
+    <div class="trcolor livingCoral" data-value="#FF6F61"></div>
+    <div class="trcolor ultraViolet" data-value="#6B5B95"></div>
+    <div class="trcolor roseQuartz" data-value="#F7CAC9"></div>
+    <div class="trcolor serenity" data-value="#92A8D1"></div>
+    <div class="trcolor marsala" data-value="#955251"></div>
+    <div class="trcolor radiandOrchid" data-value="#B565A7"></div>
+    <div class="trcolor emerald" data-value="#009B77"></div>
+    <div class="trcolor sandDollar" data-value="#DFCFBE"></div>
+
+  </center>
 </body>
+
 </html>
