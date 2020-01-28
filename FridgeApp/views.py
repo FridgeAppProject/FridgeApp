@@ -54,7 +54,7 @@ def view_login(request):
     haslo = request.POST.get('haslo')
 
     if Uzytkownik.objects.filter(login=login, haslo=haslo).count() != 0:
-        response = HttpResponse("<script>window.location.replace('http://localhost:8000/')</script>")
+        response = HttpResponse("<script>window.location.replace('http://http://fridge-application.herokuapp.com/')</script>")
         response.set_cookie('auth', login+" "+haslo)
 
         return response
