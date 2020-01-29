@@ -347,11 +347,8 @@
         function usunProdukt(p){
               document.getElementById(p).remove();
               var str = document.getElementById('produkty_przepisu').value;
-              var n = str.indexOf(p);
-              var m = n+p.length;
-              var wynik = str.substr(0, n-1) + str.substr(m, str.length);
+              var wynik = str.replace(p, "");
               document.getElementById('produkty_przepisu').value = wynik;
-
         }
       </script>
 
