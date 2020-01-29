@@ -176,8 +176,9 @@
   <center>
 
     <div id="top_menu" style="height: 40px; background-color: #009B77; width: 100%; text-align: right;">
-      <div style="display: inline-block;">Nazwa użytkownika</div>
-      <button style="display: inline-block;">Wyloguj</button>
+      <div style="display: inline-block;">{{ user.login }}</div>
+      <button onclick="foo()" style="display: inline-block;"><a href="/login" style="text-decoration: none;">Wyloguj</a></button>
+        <script>function foo(){document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";}</script>
     </div>
 
     <div id="main" style="width: 1020px;">
