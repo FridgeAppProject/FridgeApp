@@ -62,8 +62,7 @@ def view_main(request):
         return redirect('/')
     
     
-    return render(request, 'index.html', {"produkty_filtr": produkty_filtr, "id_prod": id_prod, "przepisy": przepisy, "produkty_uzytkownika": produkty_uzytkownika, "produkty": produkty})
-                                        
+    return render(request, 'index.html', {"produkty_filtr": produkty_filtr, "id_prod": id_prod, "przepisy": przepisy, "produkty_uzytkownika": produkty_uzytkownika, "produkty": produkty,"produkty_przepisu": Produkty_przepisu.objects.all()})                                   
 
 
 def view_login(request):
