@@ -62,6 +62,17 @@ def view_main(request):
         return redirect('/')
     
     
+    if request.POST.get('editIlosc') is not None and request.POST.get('editId') is not None:
+        editp = Produkty_uzytkownika.objects.get(id=request.POST.get('editId'))
+        editp.ilosc=request.POST.get('editIlosc')
+        editp.save()
+        return redirect('/')
+
+    if request.POST.get('deleteId') is not None:
+        deletep = Produkty_uzytkownika.objects.get(id=request.POST.get('deleteId'))
+        deletep.delete()
+        return redirect('/')
+
     return render(request, 'index.html', {"user": user, "produkty_filtr": produkty_filtr, "id_prod": id_prod, "przepisy": przepisy, "produkty_uzytkownika": produkty_uzytkownika, "produkty": produkty,"produkty_przepisu": Produkty_przepisu.objects.all()})                                   
 
 
