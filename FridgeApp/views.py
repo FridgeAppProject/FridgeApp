@@ -57,8 +57,9 @@ def view_main(request):
         id_prze = Przepis.objects.get(nazwa=nazwa_przepisu).id
         for x in produkty_przepisu:
             dane = x.split('_')
-            pro_prze = Produkty_przepisu(id_produktu=dane[0], id_przepisu=id_prze, ilosc=dane[1])
-            pro_prze.save()
+            if len(dane) == 2:
+                pro_prze = Produkty_przepisu(id_produktu=dane[0], id_przepisu=id_prze, ilosc=dane[1])
+                pro_prze.save()
         return redirect('/')
     
     
