@@ -224,57 +224,56 @@
       </div>
       <div id="tabela2" style="width:490px; float:right; border:solid; height:70%; overflow:auto;">
         Przepisy
-        <input type="text" name="Przepis">
-        <input type="submit" value="Wyszukaj"><br />
-        <input type="submit" value="wszystko">
-        <input type="submit" value="dostępne">
+	<input type="text" name="Przepis">
+	<input type="submit" value="Wyszukaj"><br /><br />
+	<input type="submit" value="wszystko">
+	<input type="submit" value="dostępne"><br /><br />
 
 
-        <table>
-          <tr>
-            <th>Nazwa produktu</th>
-            <th>Wyświetl Przepis</th>
-            <th>usuń</th>
-          </tr>
-          {% for prz in przepisy %}
-          <tr>
-            <td>{{ prz.nazwa }}</td>
-            <td><button id="wyświetl_przepis" type="button">Wyświetl przepis</button></td>
-            <td>Usuń</td>
-          </tr>
-          {% endfor %}
+	<table>
+	  <tr>
+		<th>Nazwa przepisu</th>
+		<th>Wyświetl przepis</th>
+
+	  </tr>
+        {% for prz in przepisy %}
+		  <tr>
+			<td>{{ prz.nazwa }}</td>
+			<td><button id="wyświetl_przepis" onclick="wyswietlPrzepis({{ prz.id }})" type="button" >Wyświetl przepis</button></td>
+
+		  </tr>
+		  {% endfor %}
 
 
 
 
-        </table>
+</table>
         {% endblock %}
       </div>
     </div>
     <br />
     <br />
 
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
+<!-- The Modal -->
+<div id="myModal" class="modal">
 
-      <!-- Modal content -->
-      <div class="modal-content">
-        <form method="post" action="">
+  <!-- Modal content -->
+  <div class="modal-content">
+      <form method="post" action="">
           Produkt:
-          <select name="addProdukt">
-            {% for pro in produkty %}
-            <option value='{{ pro.id }}'>{{ pro.nazwa }}</option>
-            {% endfor %}
+          <select name="addProdukt" >
+	            {% for pro in produkty %}
+              <option value='{{ pro.id }}'>{{ pro.nazwa }}</option>
+                {% endfor %}
           </select>
 
-          Ilość: <input type="number" name="addIlosc">
-          <input type="submit" value="Zatwierdź">
-          <span class="close1">&times;</span>
-        </form>
-      </div>
+	Ilość: <input type="number" name="addIlosc">
+	<input type="submit" value="Zatwierdź">
+    <span class="close1">&times;</span>
+      </form>
+  </div>
 
-    </div>
-    
+</div>
 <!-- The Modal2 -->
 <div id="myModal2" class="modal">
 
@@ -334,165 +333,204 @@
   </div>
 
 </div>
-    <!-- The Modal3 -->
-    <div id="myModal3" class="modal">
+<!-- The Modal3 -->
+<div id="myModal3" class="modal">
 
-      <!-- Modal3 content -->
-      <div class="modal-content">
-        Przepis
-        <button id="edytuj" type="button">Edytuj</button>
-        Skladniki
-        <ul id="myUL">
-          <li>Cebula 12</li>
-          <li> Mąka 4</li>
-          <li>Masło 5</li>
-        </ul>
-        Opis Przygotowania
-        <textarea rows="4" cols="50">
-        SmalPP
-        </textarea>
-        <input type="submit" value="Zatwierdź">
+  <!-- Modal3 content -->
+  <div class="modal-content">
+      <span class="close3">&times;</span>
+      <b><div id="wyswietlNazwa"></div></b><br><br>
+
+	<b>Skladniki:</b><br>
+      <div id = "wyswietlSkladniki"></div><br><br>
+	<b>Opis:</b><br>
+        <div id = "wyswietlOpis"></div><br><br>
 
 
-        <span class="close3">&times;</span>
-        <p>Some text in the Modal..</p>
-      </div>
 
-    </div>
-    <script>
-      // Get the modal
-      var modal = document.getElementById("myModal");
-      var modal2 = document.getElementById("myModal2");
-      var modal3 = document.getElementById("myModal3");
-      // Get the button that opens the modal
-      var btn = document.getElementById("dodaj_produkt");
-      var btn2 = document.getElementById("dodaj_przepis");
-      var btn3 = document.getElementById("wyświetl_przepis");
+  </div>
 
-      // Get the <span> element that closes the modal
-      var span1 = document.getElementsByClassName("close1")[0];
-      var span2 = document.getElementsByClassName("close2")[0];
-      var span3 = document.getElementsByClassName("close3")[0];
+</div>
+   <script>
+// Get the modal
+var modal = document.getElementById("myModal");
+var modal2 = document.getElementById("myModal2");
+var modal3 = document.getElementById("myModal3");
+// Get the button that opens the modal
+var btn = document.getElementById("dodaj_produkt");
+var btn2 = document.getElementById("dodaj_przepis");
 
-      // When the user clicks the button, open the modal
-      btn.onclick = function () {
-        modal.style.display = "block";
-      }
-      btn2.onclick = function () {
-        modal2.style.display = "block";
-      }
-      btn3.onclick = function () {
-        modal3.style.display = "block";
-      }
+// Get the <span> element that closes the modal
+var span1 = document.getElementsByClassName("close1")[0];
+var span2 = document.getElementsByClassName("close2")[0];
+var span3 = document.getElementsByClassName("close3")[0];
 
-      // When the user clicks on <span> (x), close the modal
-      span1.onclick = function () {
-        modal.style.display = "none";
-      }
-      span2.onclick = function () {
-        modal2.style.display = "none";
-      }
-      span3.onclick = function () {
-        modal3.style.display = "none";
-      }
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+btn2.onclick = function() {
+  modal2.style.display = "block";
+}
+function wyswietlPrzepis(id) {
+  modal3.style.display = "block";
+  document.getElementById('wyswietlSkladniki').innerHTML="";
 
-      // When the user clicks anywhere outside of the modal, close it
-      window.onclick = function (event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
+    var przepisy = [];
+    var produkty_przepisu = [];
+    var produkty = [];
+
+    {% for p in przepisy %}
+    przepisy.push({id:{{ p.id }}, nazwa:"{{ p.nazwa }}", opis:"{{ p.opis }}", kategoria:"{{ p.kategoria }}"});
+
+      {% endfor %}
+
+    {% for p in produkty_przepisu %}
+    produkty_przepisu.push({id:{{ p.id }}, id_przepisu:{{ p.id_przepisu }}, id_produktu:{{ p.id_produktu }}, ilosc:"{{ p.ilosc }}"});
+    {% endfor %}
+
+    {% for p in produkty %}
+    produkty.push({id:{{ p.id }}, nazwa:"{{ p.nazwa }}", jednostka:"{{ p.jednostka }}"});
+    {% endfor %}
+    let x;
+    let y;
+    let z;
+
+    for(x of przepisy){
+        if(x.id===id){
+            document.getElementById('wyswietlNazwa').innerHTML = x.nazwa;
+            document.getElementById('wyswietlOpis').innerHTML = x.opis;
+            for(y of produkty_przepisu){
+                if(y.id_przepisu === id){
+
+                    for(z of produkty){
+                        if(y.id_produktu === z.id){
+
+                            var str = z.nazwa+" "+y.ilosc+z.jednostka+"<br>";
+
+
+                            document.getElementById('wyswietlSkladniki').innerHTML += str;
+
+
+                        }
+                    }
+                }
+            }
         }
-      }
-      // Create a "close" button and append it to each list item
-      var myNodelist = document.getElementsByTagName("LI");
-      var i;
-      for (i = 0; i < myNodelist.length; i++) {
-        var span = document.createElement("SPAN");
-        var txt = document.createTextNode("\u00D7");
-        span.className = "close";
-        span.appendChild(txt);
-        myNodelist[i].appendChild(span);
-      }
+    }
 
-      // Click on a close button to hide the current list item
-      var close = document.getElementsByClassName("close");
-      var i;
-      for (i = 0; i < close.length; i++) {
-        close[i].onclick = function () {
-          var div = this.parentElement;
-          div.style.display = "none";
-        }
-      }
 
-      // Add a "checked" symbol when clicking on a list item
-      var list = document.querySelector('ul');
-      list.addEventListener('click', function (ev) {
-        if (ev.target.tagName === 'LI') {
-          ev.target.classList.toggle('checked');
-        }
-      }, false);
 
-      // Create a new list item when clicking on the "Add" button
-      function newElement() {
-        var li = document.createElement("li");
-        var inputValue = document.getElementById("składnik").value + " " + document.getElementById("ilość").value;
-        var t = document.createTextNode(inputValue);
-        li.appendChild(t);
-        if (inputValue === '') {
-          alert("You must write something!");
-        } else {
-          document.getElementById("myUL").appendChild(li);
-        }
-        document.getElementById("składnik").value = "";
-        document.getElementById("ilość").value = "";
+}
 
-        var span = document.createElement("SPAN");
-        var txt = document.createTextNode("\u00D7");
-        span.className = "close";
-        span.appendChild(txt);
-        li.appendChild(span);
+// When the user clicks on <span> (x), close the modal
+span1.onclick = function() {
+  modal.style.display = "none";
+}
+span2.onclick = function() {
+  modal2.style.display = "none";
+}
+span3.onclick = function() {
+  modal3.style.display = "none";
+}
 
-        for (i = 0; i < close.length; i++) {
-          close[i].onclick = function () {
-            var div = this.parentElement;
-            div.style.display = "none";
-          }
-        }
-      }
-    </script>
-    <script>
-      // kolorki
-      function LightenColor(color, percent) {
-        var num = parseInt(color.replace("#", ""), 16),
-          amt = Math.round(2.55 * percent),
-          R = (num >> 16) + amt,
-          B = (num >> 8 & 0x00FF) + amt,
-          G = (num & 0x0000FF) + amt;
-        return (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 + (B < 255 ? B < 1 ? 0 : B : 255) * 0x100 + (G < 255 ? G < 1 ? 0 : G : 255)).toString(16).slice(1);
-      }
-      $(function () {
-        //bg color selector
-        $(".bgcolor").click(function () {
-          var color = $(this).attr("data-value");
-          $("body").css("background-color", color);
-        });
-      });
-      $(function () {
-        //table color selector
-        $(".tablecolor").click(function () {
-          var color = $(this).attr("data-value");
-          document.getElementById("tabela1").style.backgroundColor = color;
-          document.getElementById("tabela2").style.backgroundColor = color;
-        });
-      });
-      $(function () {
-        //tr color selector
-        $(".trcolor").click(function () {
-          var color = $(this).attr("data-value");
-          $("tr:even").css("background-color", color);
-          $("tr:odd").css("background-color", LightenColor(color, 15));
-        });
-      });
-    </script>
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+// Create a "close" button and append it to each list item
+var myNodelist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+
+// Click on a close button to hide the current list item
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
+}
+
+// Add a "checked" symbol when clicking on a list item
+var list = document.querySelector('ul');
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
+
+// Create a new list item when clicking on the "Add" button
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("składnik").value + " " + document.getElementById("ilość").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("składnik").value = "";
+  document.getElementById("ilość").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+}
+</script>
+<script>
+  // kolorki
+function LightenColor(color, percent) {
+    var num = parseInt(color.replace("#",""), 16),
+		amt = Math.round(2.55 * percent),
+		R = (num >> 16) + amt,
+		B = (num >> 8 & 0x00FF) + amt,
+		G = (num & 0x0000FF) + amt;
+		return (0x1000000 + (R<255?R<1?0:R:255)*0x10000 + (B<255?B<1?0:B:255)*0x100 + (G<255?G<1?0:G:255)).toString(16).slice(1);
+}
+$(function() {
+	//bg color selector
+  $(".bgcolor").click(function(){
+		var color = $(this).attr("data-value");
+    $("body").css("background-color", color);
+	});
+});
+$(function() {
+	//table color selector
+  $(".tablecolor").click(function(){
+		var color = $(this).attr("data-value");
+    document.getElementById("tabela1").style.backgroundColor = color;
+    document.getElementById("tabela2").style.backgroundColor = color;
+	});
+});
+$(function() {
+	//tr color selector
+  $(".trcolor").click(function(){
+		var color = $(this).attr("data-value");
+    $("tr:even").css("background-color", color);
+    $("tr:odd").css("background-color", LightenColor(color, 15));
+	});
+});
+</script>
 
     Kolor tła:
     <div class="bgcolor livingCoral" data-value="#FF6F61"></div>
