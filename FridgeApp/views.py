@@ -35,7 +35,7 @@ def view_main(request):
                                         #DODAWANIE PRODUKTU#
     if request.POST.get('addProdukt') is not None and request.POST.get('addIlosc') is not None:
         if int(request.POST.get('addProdukt')) in id_prod:
-            addProdukt = Produkty_uzytkownika.objects.get(id_produktu=request.POST.get('addProdukt'))
+            addProdukt = Produkty_uzytkownika.objects.get(id_produktu=request.POST.get('addProdukt'), id_uzytkownika=user.id)
             addProdukt.addProdukt(request.POST.get('addIlosc'))
             addProdukt.save()
             return redirect('/')
