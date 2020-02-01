@@ -7,69 +7,28 @@
       padding: 5px;
     }
 
-    /*kolory*/
     table,
     th,
     td {
       border: 1px solid black;
     }
 
-    .bgcolor,
-    .trcolor,
-    .tablecolor {
-      width: 16px;
-      height: 16px;
-      border: 1px solid #555;
-      display: inline-block;
-      margin: 0 0 0 0.2em;
-      cursor: pointer;
-      padding: 2px;
-    }
-
-    .bgcolor img,
-    .trcolor img,
-    .tablecolor img {
-      max-width: 100%;
-      max-height: 100%;
-      display: block;
-    }
-
-    .livingCoral {
-      background-color: #FF6F61;
-    }
-
-    .ultraViolet {
-      background-color: #6B5B95;
-    }
-
-    .roseQuartz {
-      background-color: #F7CAC9;
-    }
-
-    .serenity {
-      background-color: #92A8D1;
-    }
-
-    .marsala {
-      background-color: #955251;
-    }
-
-    .radiandOrchid {
-      background-color: #B565A7;
-    }
-
-    .emerald {
-      background-color: #009B77;
-    }
-
-    .sandDollar {
+    body {
+      font-family: Arial, Helvetica, sans-serif;
       background-color: #DFCFBE;
     }
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
+    tr:nth-child(odd) {
+      background-color: #DFCFBE;
     }
 
+    tr:nth-child(even) {
+      background-color: #fff8e4;
+    }
+
+    .tabela {
+      background-color: #92A8D1;
+    }
     /* The Modal (background) */
     .modal {
       display: none;
@@ -215,7 +174,7 @@
         <br />
       </div>
 
-      <div id="tabela1" style="width:490px; float:left; border:solid; height:70%; overflow:auto;">
+      <div class="tabela" id="tabela1" style="width:490px; float:left; border:solid; height:70%; overflow:auto;">
         Zawartość lodówki
         <form action="" method="post">
           <input type="text" name="Składnik">
@@ -247,7 +206,7 @@
         <tr>
 
       </div>
-      <div id="tabela2" style="width:490px; float:right; border:solid; height:70%; overflow:auto;">
+      <div class="tabela". id="tabela2" style="width:490px; float:right; border:solid; height:70%; overflow:auto;">
         Przepisy<br><br>
 	<input type="text" name="Przepis">
 	<input type="submit" value="Wyszukaj"><br /><br />
@@ -572,70 +531,6 @@ function newElement() {
   }
 }
 </script>
-<script>
-  // kolorki
-function LightenColor(color, percent) {
-    var num = parseInt(color.replace("#",""), 16),
-		amt = Math.round(2.55 * percent),
-		R = (num >> 16) + amt,
-		B = (num >> 8 & 0x00FF) + amt,
-		G = (num & 0x0000FF) + amt;
-		return (0x1000000 + (R<255?R<1?0:R:255)*0x10000 + (B<255?B<1?0:B:255)*0x100 + (G<255?G<1?0:G:255)).toString(16).slice(1);
-}
-$(function() {
-	//bg color selector
-  $(".bgcolor").click(function(){
-		var color = $(this).attr("data-value");
-    $("body").css("background-color", color);
-	});
-});
-$(function() {
-	//table color selector
-  $(".tablecolor").click(function(){
-		var color = $(this).attr("data-value");
-    document.getElementById("tabela1").style.backgroundColor = color;
-    document.getElementById("tabela2").style.backgroundColor = color;
-	});
-});
-$(function() {
-	//tr color selector
-  $(".trcolor").click(function(){
-		var color = $(this).attr("data-value");
-    $("tr:even").css("background-color", color);
-    $("tr:odd").css("background-color", LightenColor(color, 15));
-	});
-});
-</script>
-
-    Kolor tła:
-    <div class="bgcolor livingCoral" data-value="#FF6F61"></div>
-    <div class="bgcolor ultraViolet" data-value="#6B5B95"></div>
-    <div class="bgcolor roseQuartz" data-value="#F7CAC9"></div>
-    <div class="bgcolor serenity" data-value="#92A8D1"></div>
-    <div class="bgcolor marsala" data-value="#955251"></div>
-    <div class="bgcolor radiandOrchid" data-value="#B565A7"></div>
-    <div class="bgcolor emerald" data-value="#009B77"></div>
-    <div class="bgcolor sandDollar" data-value="#DFCFBE"></div>
-    Kolor tabel:
-    <div class="tablecolor livingCoral" data-value="#FF6F61"></div>
-    <div class="tablecolor ultraViolet" data-value="#6B5B95"></div>
-    <div class="tablecolor roseQuartz" data-value="#F7CAC9"></div>
-    <div class="tablecolor serenity" data-value="#92A8D1"></div>
-    <div class="tablecolor marsala" data-value="#955251"></div>
-    <div class="tablecolor radiandOrchid" data-value="#B565A7"></div>
-    <div class="tablecolor emerald" data-value="#009B77"></div>
-    <div class="tablecolor sandDollar" data-value="#DFCFBE"></div>
-    Kolor komórek:
-    <div class="trcolor livingCoral" data-value="#FF6F61"></div>
-    <div class="trcolor ultraViolet" data-value="#6B5B95"></div>
-    <div class="trcolor roseQuartz" data-value="#F7CAC9"></div>
-    <div class="trcolor serenity" data-value="#92A8D1"></div>
-    <div class="trcolor marsala" data-value="#955251"></div>
-    <div class="trcolor radiandOrchid" data-value="#B565A7"></div>
-    <div class="trcolor emerald" data-value="#009B77"></div>
-    <div class="trcolor sandDollar" data-value="#DFCFBE"></div>
-
-  </center>
+</center>
 </body>
-
 </html>
