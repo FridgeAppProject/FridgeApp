@@ -95,6 +95,10 @@ def view_main(request):
     if request.POST.get('co_wyswietlic') is None:
         przepisy = dostepne_przepisy
 
+     szukany_przepis = request.POST.get('Przepis')
+    if szukany_przepis != None:
+        przepisy = Przepis.objects.filter(nazwa__contains=szukany_przepis.upper())
+
 
 
     return render(request, 'index.html', {"user": user, "produkty_filtr": produkty_filtr, "id_prod": id_prod, "przepisy": przepisy, "produkty_uzytkownika": produkty_uzytkownika, "produkty": produkty,"produkty_przepisu": Produkty_przepisu.objects.all()})                                   
