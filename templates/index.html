@@ -1,5 +1,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<html lang="pl">
+<html lang="pl" style="margin: 0px; padding:0px">
 
 <head>
   <style>
@@ -144,10 +144,13 @@
       cursor: pointer;
     }
 
-    button
+    button, input[type=submit]
     {
+        cursor: pointer;
+        background-color:#fff8e4;
       border: #555 2px solid;
     }
+      center{padding: 0px;}
   </style>
 
   <meta charset="utf-8">
@@ -155,24 +158,22 @@
 
 </head>
 
-<body>
+<body style="margin: 0px; padding:0px; ">
   <center>
 
-    <div id="top_menu" style="height: 40px; background-color: #009B77; width: 100%; text-align: right;">
-      <div style="display: inline-block;">{{ user.login }}</div>
-      <button onclick="foo()" style="display: inline-block;"><a href="/login" style="text-decoration: none;">Wyloguj</a></button>
+      <div id="top_menu" style="margin:0px 0px 50px 0px;padding:0px; height: 80px; background-color: #009B77; min-width: 1020px;width: 100%; display:flex;align-items: center; justify-content: space-between;"><span ><h1 style=" text-shadow: -1px 0 black, 0 2px black, 1px 0 black, 0 -1px black;color: #DFCFBE">FridgeApp</h1></span>
+          <span><button id="dodaj_produkt" type="button" style="width:200px;">Dodaj produkt</button>
+        <button id="dodaj_przepis" type="button" style="width:200px;">Dodaj przepis</button></span>
+      <span style="display: inline-block;">{{ user.login }}
+      <button onclick="foo()" style="display: inline-block;"><a href="/login" style="text-decoration: none;">Wyloguj</a></button></span>
         <script>function foo(){document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";}</script>
     </div>
 
     <div id="main" style="width: 1020px;">
 
-      <div style="text-align: center;">
-        <h1>FridgeApp</h1>
-        <button id="dodaj_produkt" type="button" style="width:200px;">Dodaj produkt</button>
-        <button id="dodaj_przepis" type="button" style="width:200px;">Dodaj przepis</button>
-        <br />
-        <br />
-      </div>
+
+
+
 
       <div class="tabela" id="tabela1" style="width:490px; float:left; border:solid; height:70%; overflow:auto;">
         Zawartość lodówki
