@@ -95,7 +95,7 @@ def view_main(request):
     if request.POST.get('co_wyswietlic') is None:
         przepisy = dostepne_przepisy
 
-     szukany_przepis = request.POST.get('Przepis')
+    szukany_przepis = request.POST.get('Przepis')
     if szukany_przepis != None:
         przepisy = Przepis.objects.filter(nazwa__contains=szukany_przepis.upper())
 
