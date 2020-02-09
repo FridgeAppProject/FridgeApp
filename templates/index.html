@@ -210,8 +210,18 @@
         Przepisy<br><br>
 	<input type="text" name="Przepis">
 	<input type="submit" value="Wyszukaj"><br /><br />
-	<input type="submit" value="wszystko">
-	<input type="submit" value="dostępne"><br /><br />
+	<form method="post" action="">
+	<input type="submit" onmouseover="Co_wyswietlic('wszystko')" value="wszystko">
+	<input type="submit" onmouseover="Co_wyswietlic('dostepne')" value="dostępne"><br /><br />
+    <input type="text" id="co_wyswietlic" name="co_wyswietlic" style="display: none">
+    </form>
+            <script>
+            function Co_wyswietlic(x){
+                document.getElementById("co_wyswietlic").value=x;
+
+            }
+
+            </script>
 
 
 	<table>
