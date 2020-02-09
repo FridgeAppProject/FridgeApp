@@ -73,6 +73,29 @@ def view_main(request):
         deletep = Produkty_uzytkownika.objects.get(id=request.POST.get('deleteId'))
         deletep.delete()
         return redirect('/')
+    #dostepne przepisy#
+
+    dostepne_przepisy = []
+    for przepis in przepisy:
+        ok = True
+        for p in Produkty_przepisu.objects.filter(id_przepisu=przepis.id):
+            if produkty_uzytkownika.filter(id_produktu=p.id_produktu).count() > 0:
+                produkty_uzytkownika.filter(id_produktu=p.id_produktu)
+                spri = produkty_uzytkownika.get(id_produktu=p.id_produktu).ilosc
+                if p.ilosc > spri:
+                    ok = False
+            else:
+                ok = False
+        if ok:
+            dostepne_przepisy.append(przepis)
+    if request.POST.get('co_wyswietlic') == "dostepne":
+        przepisy = dostepne_przepisy
+    if request.POST.get('co_wyswietlic') == "wszystko":
+        przepisy = Przepis.objects.all()
+    if request.POST.get('co_wyswietlic') is None:
+        przepisy = dostepne_przepisy
+
+
 
     return render(request, 'index.html', {"user": user, "produkty_filtr": produkty_filtr, "id_prod": id_prod, "przepisy": przepisy, "produkty_uzytkownika": produkty_uzytkownika, "produkty": produkty,"produkty_przepisu": Produkty_przepisu.objects.all()})                                   
 
