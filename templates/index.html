@@ -59,50 +59,33 @@
       margin: auto;
       padding: 20px;
       border: 1px solid #888;
-      width: 80%;
+      width: 40%;
+        min-width: 500px;
     }
 
     /* The Close Button */
-    .close {
+    /*.close {
       color: #aaaaaa;
-      /*float: right;*/
+
       font-size: 20px;
       font-weight: bold;
       margin-left: 5px;
     }
+    */
 
-    .close1 {
+    .close,
+    .close1,
+    .close2,
+    .close3,
+    .close4,
+    .close5
+    {
       color: #aaaaaa;
-      float: right;
+      display:flex;
       font-size: 28px;
       font-weight: bold;
     }
 
-    .close2 {
-      color: #aaaaaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-    }
-
-    .close3 {
-      color: #aaaaaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-    }
-    .close4 {
-      color: #aaaaaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-    }
-    .close5 {
-      color: #aaaaaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-    }
 
     .close:hover,
     .close:focus {
@@ -257,16 +240,18 @@
   <!-- Modal content -->
   <div class="modal-content">
       <form method="post" action="">
-          Produkt:
-          <select name="addProdukt" >
+
+      <span  class="close1">&times;</span>
+          Produkt:<br>
+          <select style="width: 200px" name="addProdukt" >
 	            {% for pro in produkty %}
               <option value='{{ pro.id }}'>{{ pro.nazwa }}</option>
                 {% endfor %}
-          </select>
+          </select><br><br>
 
-	Ilość: <input type="number" name="addIlosc">
+	Ilość:<br> <input style="width: 200px" type="number" name="addIlosc"><br><br>
 	<input type="submit" value="Zatwierdź">
-    <span class="close1">&times;</span>
+
       </form>
   </div>
 
@@ -286,21 +271,22 @@
           <input id="kategoria" type="text" name="kategoria">
           <br><br>
           Opis:<br>
-          <textarea row="4" id="Opis" name="opis"></textarea>
+          <textarea rows="6" cols="60" id="Opis" name="opis"></textarea>
           <br><br>
-
-	Składnik: <select id = "id_produktu" >
+<div style="text-align:center;border: 1px solid black;">
+	Składnik:<br> <select id = "id_produktu" >
 	            {% for pro in produkty %}
               <option value='{{ pro.id }}'>{{ pro.nazwa }}</option>
                 {% endfor %}
-          </select>
-	Ilość: <input id="ilość" type="number" name="Ilość">
+          </select><br><br>
+	Ilość:<br> <input id="ilość" type="number" name="Ilość"><br><br>
           <button type="button" id="dodaj_produkt" onclick="dodajProdukt()" >Dodaj</button>
       <input type="text" id = "produkty_przepisu" name="produkty_przepisu" style="display: none">
-	<div id="wybrane_produkty">
+	<div style="text-align: center;" id="wybrane_produkty">
 
     </div>
-	<input type="submit" value="Zatwierdź">
+</div>
+	<br><input type="submit" value="Zatwierdź">
 
           </form>
 
@@ -312,7 +298,7 @@
               var ilosc = document.getElementById('ilość').value;
 
               var p=prod_id+"_"+ilosc+";";
-              document.getElementById('wybrane_produkty').innerHTML+="<div id='"+p+"'onclick='usunProdukt(\""+p+"\")' style='cursor:pointer;font: inherit; border: 1px solid black; border-radius: 3px; margin: 3px 0 10px 0; padding: 3px 0' >"+prod_name+" "+ilosc+"</div>";
+              document.getElementById('wybrane_produkty').innerHTML+="<div id='"+p+"'onclick='usunProdukt(\""+p+"\")' style='display: inline-block;cursor:pointer;font: inherit;color:darkslategrey; border: 1px solid darkslategrey; border-radius: 3px; margin: 3px 0 10px 0; padding: 3px 0;width: 50%;' >"+prod_name+" "+ilosc+"</div>";
               document.getElementById("produkty_przepisu").value+=p;
 
           }
@@ -333,11 +319,10 @@
   <!-- Modal3 content -->
   <div class="modal-content">
       <span class="close3">&times;</span>
-      <b><div id="wyswietlNazwa"></div></b><br><br>
-
-	<b>Skladniki:</b><br>
-      <div id = "wyswietlSkladniki"></div><br><br>
-	<b>Opis:</b><br>
+      <h1 style="margin: 0;padding: 0;"><b><div id="wyswietlNazwa"></div></b></h1>
+	<h2 style="margin-top: 0;padding: 0;"><b>Skladniki:</b></h2>
+      <div id = "wyswietlSkladniki"></div>
+	<h2 style="padding: 0;"><b>Opis:</b></h2>
         <div id = "wyswietlOpis"></div><br><br>
 
 
@@ -352,11 +337,11 @@
   <div class="modal-content">
       <form method="post" action="">
 
-
+<span class="close4">&times;</span>
 	Ilość: <input type="number" name="editIlosc">
           <input type="number" id="editId" name="editId" style="display: none">
 	<input type="submit" value="Zatwierdź">
-    <span class="close4">&times;</span>
+
       </form>
   </div></div>
       <!-- The Modal5 -->
@@ -365,11 +350,11 @@
   <!-- Modal5 content -->
   <div class="modal-content">
     <form method="post" action="">
-
+<span class="close5">&times;</span>
     <input type="number" id="deleteId" name="deleteId" style="display: none">
 	<input type="submit" value="Potwierdź">
 	<input type="button" onclick="c5()" value="Anuluj">
-    <span class="close5">&times;</span>
+
       </form>
   </div>
   </div>
@@ -447,7 +432,7 @@ function wyswietlPrzepis(id) {
                     for(z of produkty){
                         if(y.id_produktu === z.id){
 
-                            var str = z.nazwa+" "+y.ilosc+z.jednostka+"<br>";
+                            var str ="<b>"+ z.nazwa+": </b>"+y.ilosc+z.jednostka+"<br>";
 
 
                             document.getElementById('wyswietlSkladniki').innerHTML += str;
