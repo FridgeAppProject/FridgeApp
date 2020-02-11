@@ -46,7 +46,7 @@ def view_main(request):
             return redirect('/')
                                       # END DODAWANIE PRODUKTU END#
 
-    nazwa_przepisu = request.POST.get('nazwa_przepisu')
+    nazwa_przepisu = str(request.POST.get('nazwa_przepisu')).upper()
     kategoria = request.POST.get('kategoria')
     opis = request.POST.get('opis')
     produkty_przepisu = request.POST.get('produkty_przepisu')
